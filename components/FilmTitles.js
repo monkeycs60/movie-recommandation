@@ -1,12 +1,11 @@
 
+import useFilmTitles from '@/hooks/useFilmTitles';
 import { useQuery } from '@tanstack/react-query';;
 import { getCatFact } from './../pages/api/catCall';
 
 const FilmTitles = () => {
-	const { data, isLoading, isError } = useQuery(['catFact'], getCatFact, {
-		staleTime: 1000 * 60 * 60 * 24,
-		cacheTime: 1000 * 60 * 60 * 24,
-	}, {suspense: true});
+	const { sortedMovies, data, isLoading, isError } = useFilmTitles();
+    
 	return (
        
 		<div className='bg-emerald-700'>
