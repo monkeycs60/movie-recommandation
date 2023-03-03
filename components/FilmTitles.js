@@ -3,7 +3,7 @@ import useFilmTitles from '@/hooks/useFilmTitles';
 
 const FilmTitles = () => {
 	const { sortedMoviesByGenre, data, isLoading, isError } = useFilmTitles();
-    
+   
 	return (
        
 		<div className='bg-emerald-700'>

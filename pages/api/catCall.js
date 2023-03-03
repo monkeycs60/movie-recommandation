@@ -22,10 +22,9 @@ export async function getCatFact() {
 	// soit les 40 films des 80 films les mieux notés de chaque année
 	for (let index = 1978; index < 2023; index++) {
 		const res = await movieApi.get(`/discover/movie?&primary_release_year=${index}&page=1`);
-		const resNextPage = await movieApi.get(`/discover/movie?&primary_release_year=${index}&page=2`); 
-		const resNextPage2 = await movieApi.get(`/discover/movie?&primary_release_year=${index}&page=3`);
-    
-		moviesOfTheYear.push(res.data.results, resNextPage.data.results, resNextPage2.data.results);
+		const resNextPage = await movieApi.get(`/discover/movie?&primary_release_year=${index}&page=2`);  
+
+		moviesOfTheYear.push(res.data.results, resNextPage.data.results);
 	}
 	// Conversion des multiples arrays en un seul array
 	const moviesOfTheYearFlat = moviesOfTheYear.flat();
