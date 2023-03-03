@@ -39,7 +39,7 @@ const useFilmTitles = () => {
 		}
 		console.log(moviesByYear);
 	}, [data]);
-    
+
 	const sortedMoviesByDecade = useMemo(() => {
 		const moviesByDecade = {};
 		for (let index = 1970; index < 2021; index += 10) {
@@ -67,7 +67,7 @@ const useFilmTitles = () => {
 		});
 		console.log(moviesByLanguage);
 	}, [data]);
-
+	
 	return { data, sortedMoviesByGenre, isLoading, isError };
 };
 

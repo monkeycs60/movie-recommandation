@@ -5,11 +5,10 @@ import { getCatFact } from './api/catCall';
 import { Suspense, lazy, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Link from 'next/link';
 // import FilmTitles from '@/components/FilmTitles';
 
-const FilmTitles= lazy(() => import('../components/FilmTitles'));
 export default function Home() {
-	const [showFilmTitles, setShowFilmTitles] = useState(false);
 	return (
 		<>
 			<Head>
@@ -21,17 +20,18 @@ export default function Home() {
 			<main className='flex h-[100vh] flex-col items-center justify-start bg-yellow-50'>
 				<Header />
 				<div className='image-cover flex w-[70vw] flex-1 flex-col items-center justify-center bg-red-500'>
-				  <button onClick={() => setShowFilmTitles(!showFilmTitles)} className="m-12 bg-metalgrey py-12 px-56 text-white">Show Film Titles</button>
-				   {showFilmTitles && (
-						<Suspense fallback={<div>Loading...SUSPENSEEEEE</div>}>
-							<FilmTitles />
-						</Suspense>
-					)}
-          
-					{/* <div className='my-12 flex items-center justify-center'>
+					<Link href="/questions">
+        
+				  <button onClick={() => {
+							console.log('click');
+						}
+
+						} className="m-12 bg-metalgrey py-12 px-56 text-white">Show Film Titles</button>
+
+						{/* <div className='my-12 flex items-center justify-center'>
 					<Image src="/canape-movie.png" alt="" width={1100} height={1200} />
 				</div> */}
-
+					</Link>
 				</div>
 				<Footer />
 			</main>

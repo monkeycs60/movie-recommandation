@@ -5,6 +5,7 @@ import {
 	QueryClient,
 	QueryClientProvider,
 } from '@tanstack/react-query';
+import FilmListContextProvider from '@/contexts/FilmListContextProvider';
 
 export default function MyApp({ Component, pageProps }) {
 	const [queryClient] = React.useState(() => new QueryClient({
@@ -16,9 +17,17 @@ export default function MyApp({ Component, pageProps }) {
 	}));
 
 	return (
+	
 		<QueryClientProvider client={queryClient}>
-			<Component {...pageProps} />
-			<ReactQueryDevtools initialIsOpen={false} />
+			 <FilmListContextProvider.Provider value={
+					
+				{	filmList: [],
+					setFilmList: () => {},
+				}
+			 }>
+				<Component {...pageProps} />
+				<ReactQueryDevtools initialIsOpen={false} />
+			</FilmListContextProvider.Provider>
 		</QueryClientProvider>
 	);
 }

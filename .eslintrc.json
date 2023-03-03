@@ -8,6 +8,7 @@
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
     "padded-blocks": ["error", "never"],
     "indent": ["error", "tab"],
-    "no-trailing-spaces": ["error", { "skipBlankLines": true }]
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "react/no-unescaped-entities": "off"
   }
 }
