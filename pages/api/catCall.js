@@ -18,15 +18,18 @@ const movieApi = axios.create({
 export async function getCatFact() {
 	let moviesOfTheYear = [];
 	// L'api TMDB délivre 20 requêtes par page
-	// Pour chaque année depuis 1978, on récupère 2 pages de 20 films, soit les 40 films les mieux notés de chaque année
+	// Pour chaque année depuis 1978, on récupère aléatoirement 2 pages de 20 films parmi les 4 premières pages, 
+	// soit les 40 films des 80 films les mieux notés de chaque année
 	for (let index = 1978; index < 2023; index++) {
-		const res = await movieApi.get(`/discover/movie?&primary_release_year=${index}`);
+		const res = await movieApi.get(`/discover/movie?&primary_release_year=${index}&page=1`);
 		const resNextPage = await movieApi.get(`/discover/movie?&primary_release_year=${index}&page=2`); 
-		
-		moviesOfTheYear.push(res.data.results, resNextPage.data.results);
+		const resNextPage2 = await movieApi.get(`/discover/movie?&primary_release_year=${index}&page=3`);
+    
+		moviesOfTheYear.push(res.data.results, resNextPage.data.results, resNextPage2.data.results);
 	}
 	// Conversion des multiples arrays en un seul array
 	const moviesOfTheYearFlat = moviesOfTheYear.flat();
-	console.log('moviesOfTheYearFlat', moviesOfTheYearFlat);
-	return moviesOfTheYearFlat;
+	//randomly reduce the array to 1000 movies
+	const moviesOfTheYearFlatRandom = moviesOfTheYearFlat.sort(() => Math.random() - 0.5).slice(0, 1000);
+	return moviesOfTheYearFlatRandom;
 }

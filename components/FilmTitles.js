@@ -1,10 +1,8 @@
 
 import useFilmTitles from '@/hooks/useFilmTitles';
-import { useQuery } from '@tanstack/react-query';;
-import { getCatFact } from './../pages/api/catCall';
 
 const FilmTitles = () => {
-	const { sortedMovies, data, isLoading, isError } = useFilmTitles();
+	const { sortedMoviesByGenre, data, isLoading, isError } = useFilmTitles();
     
 	return (
        
