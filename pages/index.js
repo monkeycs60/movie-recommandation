@@ -27,6 +27,7 @@ export default function Home() {
 							<FilmTitles />
 						</Suspense>
 					)}
+          
 					{/* <div className='my-12 flex items-center justify-center'>
 					<Image src="/canape-movie.png" alt="" width={1100} height={1200} />
 				</div> */}
