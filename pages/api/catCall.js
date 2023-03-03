@@ -8,13 +8,25 @@ const movieApi = axios.create({
 		api_key: apiKey,
 		language: 'fr-FR',
 		include_adult: false,
+		sort_by: 'vote_average.desc',
+		'vote_count.gte': 300,
+		include_video: false,
+		with_watch_monetization_types: 'flatrate',
+  
 	}});
 
 export async function getCatFact() {
-	let moviesOfBeginning = [];
-	for (let index = 1978; index < 2022; index++) {
-		const res = await movieApi.get(`/discover/movie?&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&year=${index}`);
-		moviesOfBeginning.push(res.data.results);
+	let moviesOfTheYear = [];
+	// L'api TMDB délivre 20 requêtes par page
+	// Pour chaque année depuis 1978, on récupère 2 pages de 20 films, soit les 40 films les mieux notés de chaque année
+	for (let index = 1978; index < 2023; index++) {
+		const res = await movieApi.get(`/discover/movie?&primary_release_year=${index}`);
+		const resNextPage = await movieApi.get(`/discover/movie?&primary_release_year=${index}&page=2`); 
+		
+		moviesOfTheYear.push(res.data.results, resNextPage.data.results);
 	}
-	return moviesOfBeginning;
+	// Conversion des multiples arrays en un seul array
+	const moviesOfTheYearFlat = moviesOfTheYear.flat();
+	console.log('moviesOfTheYearFlat', moviesOfTheYearFlat);
+	return moviesOfTheYearFlat;
 }
