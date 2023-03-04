@@ -3,7 +3,7 @@ import useFilmTitles from '@/hooks/useFilmTitles';
 import SampleQuestions from './SampleQuestions';
 
 const FilmTitles = () => {
-	const { sortedMoviesByGenre, data, isLoading, isError } = useFilmTitles();
+	const { data, isLoading, isError} = useFilmTitles();
 	
 	return (
        
