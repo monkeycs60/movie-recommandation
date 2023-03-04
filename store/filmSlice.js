@@ -15,7 +15,7 @@ export const filmSlice = createSlice({
 			state.totalFilms = state.filmsList.length;
 		},
         	resetFilmsList: (state) => {
-			if (state.filmsList.length > 1001) {
+			if (state.filmsList.length > 998) {
 				state.filmsList = [];
 			}
 		},
@@ -29,6 +29,7 @@ export const filmSlice = createSlice({
 
 export const {
 	addFilms,
+	resetFilmsList,
 } = filmSlice.actions;
 
 export default filmSlice.reducer;

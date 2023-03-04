@@ -4,7 +4,7 @@ import { useMemo, useEffect } from 'react';
 import movieGenres from '@/lib/movieGenres';
 import movieCountryByISO from '@/lib/movieCountryByISO';
 import { useDispatch } from 'react-redux';
-import { addFilms } from '@/store/filmSlice';
+import { addFilms, resetFilmsList } from '@/store/filmSlice';
 
 const useFilmTitles = () => {
 	const { data, isLoading, isError } = useQuery(['catFact'], getCatFact, {
@@ -71,6 +71,10 @@ const useFilmTitles = () => {
 		});
 		console.log(moviesByLanguage);
 	}, [data]);
+
+	  useEffect(() => {
+		dispatch(resetFilmsList());
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (data) {
