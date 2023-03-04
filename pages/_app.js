@@ -5,7 +5,10 @@ import {
 	QueryClient,
 	QueryClientProvider,
 } from '@tanstack/react-query';
-import FilmListContextProvider from '@/contexts/FilmListContextProvider';
+import { Provider as ReduxProvider } from 'react-redux';
+import { Reduxstore } from '@/store/store';
+import { store, persistor } from '@/store/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 export default function MyApp({ Component, pageProps }) {
 	const [queryClient] = React.useState(() => new QueryClient({
@@ -17,17 +20,13 @@ export default function MyApp({ Component, pageProps }) {
 	}));
 
 	return (
-	
-		<QueryClientProvider client={queryClient}>
-			 <FilmListContextProvider.Provider value={
-					
-				{	filmList: [],
-					setFilmList: () => {},
-				}
-			 }>
-				<Component {...pageProps} />
-				<ReactQueryDevtools initialIsOpen={false} />
-			</FilmListContextProvider.Provider>
-		</QueryClientProvider>
+	 <ReduxProvider store={store}>
+	     <PersistGate loading={null} persistor={persistor}>
+				<QueryClientProvider client={queryClient}>
+					<Component {...pageProps} />
+					<ReactQueryDevtools initialIsOpen={false} />
+				</QueryClientProvider>
+			</PersistGate>
+		</ReduxProvider>
 	);
 }
