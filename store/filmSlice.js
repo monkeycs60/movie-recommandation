@@ -10,7 +10,15 @@ export const filmSlice = createSlice({
 		showQuestions: false,
 	},
 	reducers: {
-	
+		addFilms: (state, action) => {
+			state.filmsList.push(...action.payload);
+			state.totalFilms = state.filmsList.length;
+		},
+        	resetFilmsList: (state) => {
+			if (state.filmsList.length > 1001) {
+				state.filmsList = [];
+			}
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(HYDRATE, (state, action) => {
@@ -20,7 +28,7 @@ export const filmSlice = createSlice({
 });
 
 export const {
-	
+	addFilms,
 } = filmSlice.actions;
 
 export default filmSlice.reducer;
