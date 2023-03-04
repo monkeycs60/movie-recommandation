@@ -7,6 +7,7 @@ export const filmSlice = createSlice({
 		filmsList: [],
 		totalFilms: 0,
 		questions: [],
+		totalQuestions: 0,
 		showQuestions: false,
 	},
 	reducers: {
@@ -19,6 +20,15 @@ export const filmSlice = createSlice({
 				state.filmsList = [];
 			}
 		},
+		addQuestion: (state, action) => {
+			state.questions.push(...action.payload);
+			state.questions = state.questions.filter((v, i, a) => a.findIndex((t) => (t.question === v.question)) === i);
+			state.totalQuestions = state.questions.length;
+		},
+		removeOneQuestion: (state) => {
+			state.questions.shift();
+			state.totalQuestions = state.questions.length;
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(HYDRATE, (state, action) => {
@@ -30,6 +40,8 @@ export const filmSlice = createSlice({
 export const {
 	addFilms,
 	resetFilmsList,
+	addQuestion,
+	removeOneQuestion,
 } = filmSlice.actions;
 
 export default filmSlice.reducer;

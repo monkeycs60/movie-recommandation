@@ -1,12 +1,13 @@
 import questions from '@/lib/questionsList';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { addQuestion, removeOneQuestion } from '@/store/filmSlice';
 
 const SampleQuestions = (data) => {
+	const dispatch = useDispatch();
 	const filmFull = useSelector((state) => state.film);
-	console.warn('filmFull', filmFull);
+	console.warn(filmFull);
 	// fonction pour mélanger les questions de manière aléatoire
-	const [questionsShuffled, setQuestionsShuffled] = useState([...questions]);
 	const shuffleQuestions = (questions) => {
 		const shuffled = questions.sort(() => Math.random() - 0.5);
 		return shuffled;
@@ -14,30 +15,30 @@ const SampleQuestions = (data) => {
 
 	// mélanger les questions
 	const shuffledQuestions = shuffleQuestions(questions);
-	console.log('ON LOGGG DE FOU', questionsShuffled);
 
-	let randomQuestionTag = [];
+	useEffect(() => {
+		dispatch(addQuestion(shuffledQuestions));
+	}, [shuffledQuestions, dispatch]);
 
 	// fonction pour sélectionner une question aléatoire
 	
 	const getRandomQuestion = (questionsShuffled) => {
 		if (questionsShuffled.length <= 2) return null;
 		const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-		  setQuestionsShuffled([...questionsShuffled.filter((q) => q !== randomQuestion)]);
-		randomQuestionTag.push(randomQuestion);
+		dispatch(removeOneQuestion());
 		return randomQuestion;
 	};
 	return (
 		<div>
 			<button onClick={() => getRandomQuestion(shuffledQuestions)}>Get a random question</button>
-			<p>{randomQuestionTag?.question}</p>
+			<p>
+				{filmFull.questions[0]?.question}
+			</p>
 			<div>
-				{randomQuestionTag?.answers && randomQuestionTag.answers.map((answer) => {
-					return <p
-						key={answer}
-					>{answer}</p>;
-				})
-				}
+				{filmFull.questions[0]?.answers.map((answer) => (
+					<p key={answer}>{answer}</p>
+				))}
+				
 			</div>
 		</div>
 	);
