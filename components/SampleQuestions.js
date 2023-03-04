@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { addQuestion, removeOneQuestion } from '@/store/filmSlice';
 
 const SampleQuestions = (data) => {
+    	const [currentQuestion, setCurrentQuestion] = useState({question: '', answers: []});
+
 	const dispatch = useDispatch();
 	const filmFull = useSelector((state) => state.film);
 	console.warn(filmFull);
@@ -19,15 +21,23 @@ const SampleQuestions = (data) => {
 	useEffect(() => {
 		dispatch(addQuestion(shuffledQuestions));
 	}, [shuffledQuestions, dispatch]);
-
+ 
 	// fonction pour sélectionner une question aléatoire
+	const questionsTotalRedux = useSelector((state) => state.film.questions);
 	
-	const getRandomQuestion = (questionsShuffled) => {
-		if (questionsShuffled.length <= 2) return null;
-		const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+	const getRandomQuestion = (shuffledQuestions) => {
+		if (shuffledQuestions.length <= 2) return null;
+		const randomQuestion = questionsTotalRedux[Math.floor(Math.random() * questions.length)];
 		dispatch(removeOneQuestion());
+		setCurrentQuestion(randomQuestion);
 		return randomQuestion;
 	};
+
+	const handleAnswerClick = (answer) => {
+		// faire quelque chose avec la réponse sélectionnée
+		console.log(`L'utilisateur a sélectionné la réponse : ${answer}`);
+	};
+
 	return (
 		<div>
 			<button onClick={() => getRandomQuestion(shuffledQuestions)}>Get a random question</button>
@@ -36,7 +46,10 @@ const SampleQuestions = (data) => {
 			</p>
 			<div>
 				{filmFull.questions[0]?.answers.map((answer) => (
-					<p key={answer}>{answer}</p>
+					<button onClick={() => {
+						handleAnswerClick(answer);
+						getRandomQuestion(shuffledQuestions);
+					}} key={answer}>{answer}</button>
 				))}
 				
 			</div>
