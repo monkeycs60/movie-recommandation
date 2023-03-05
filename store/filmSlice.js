@@ -9,10 +9,6 @@ export const filmSlice = createSlice({
 		questions: [],
 		totalQuestions: 0,
 		showQuestions: false,
-		questionOneSelection: [],
-		questionTwoSelection: [],
-		questionThreeSelection: [],
-		questionFourSelection: [],
 	},
 	reducers: {
 		addFilms: (state, action) => {
