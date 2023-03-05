@@ -6,6 +6,7 @@ import { Suspense, lazy, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 export async function getServerSideProps() {
 	try {
@@ -44,31 +45,35 @@ export default function Home(dehydratedState) {
 			</Head>
 			<div className="min-h-[100vh] w-full bg-yellow-50">
 				<Header />
-				<main className='my-12 mx-auto flex w-4/5 flex-row-reverse items-end justify-start gap-6'>
-					<div className="it grid grid-cols-5 gap-2">
+				<main className='relative my-16 mx-auto flex w-4/5 flex-row-reverse items-end justify-between gap-6'>
+					<motion.div
+					 className="it grid grid-cols-5 gap-2">
 				  		<button onClick={() => {router.push('/questions');}} className="col-span-3 col-start-2 row-start-3 m-auto h-full w-full bg-black font-sans text-3xl text-white hover:bg-white hover:text-black">
 				  On tente ?
+				 <span className='block text-xs'> (clique ici)</span>
 				  		</button>
 						{posterArray.map((poster, index) => (
 							<div key={index} className={'h-32 w-32 bg-metalgrey opacity-60'}>
 								<img src={baseUrlForPoster + poster} alt="" className='h-full object-cover' />
 							</div>
 						))}
-					</div>
-					<div className='flex flex-1 flex-col gap-12 bg-white rounded-xl p-6'>
-						<div className='flex flex-col gap-4'>
-							<h2 className='text-2xl'>En panne d'inspiration ? Vous êtes au bon endroit !</h2>
-							<h3>Notre artisan développeur vous a concocté un petit algorithme afin de dénicher votre prochain film préféré</h3>
+					</motion.div>
+					<div className='flex w-1/3 flex-col flex-wrap gap-12  break-words rounded-xl font-serif'>
+						<div className='flex flex-col gap-4 rounded-xl bg-white p-4'>
+							<h2 className='font-sans text-3xl font-bold'>En panne d'inspiration ? Vous êtes au bon endroit !</h2>
+							<h3 className='text-xl'>Notre artisan développeur vous a concocté un petit algorithme afin de dénicher votre prochain film préféré</h3>
 						</div>
-						<div>
+						<div className='rounded-xl bg-white p-4'>
 							<div>
-								<p>100% opérationnel <span> (on croise les doigts) </span></p>
+								<motion.p initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ duration: 1 }}>100% opérationnel <span> (on croise les doigts) </span></motion.p>
 							</div>
 							<div>
 								<p>Ultra rapide <span> (dans les faits... pas vraiment) </span></p>
 							</div>
 							<div>
-								<p>2000 films référencés <span>(la flemme rajouter d'autres)</span></p>
+								<p>2000 films référencés <span>(pas mal ?)</span></p>
 							</div>
 						</div>
 					</div>
