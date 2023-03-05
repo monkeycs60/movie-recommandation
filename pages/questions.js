@@ -4,12 +4,10 @@ import { Suspense } from 'react';
 
 const Questions = () => {
 	return (
-		<div className='relative'>
-			<h1 className='text-4xl text-white'>Questions</h1>
+		<div className='relative h-[100vh] bg-darker'>
 			<Suspense fallback={<LoadingFetch />}>
 				<FilmTitles />
 			</Suspense>
-            
 		</div>
 	);
 };

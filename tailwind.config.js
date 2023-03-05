@@ -12,6 +12,7 @@ module.exports = {
 				cacao: '#725341',
 				sand: '#C4966A',
 				metalgrey: '#91898A',
+				darker: '#1b1b1a',
 			},
 			fontFamily: {
 				'serif': ['Lora', 'Georgia', 'Cambria', 'Times New Roman', 'serif'],

@@ -40,14 +40,14 @@ const SampleQuestions = (data) => {
 	};
 
 	return (
-		<div>
-			<button onClick={() => getRandomQuestion(shuffledQuestions)}>Get a random question</button>
-			<p>
+		<div className='flex h-full flex-col items-center justify-center gap-[10vh] bg-darker'>
+			{/* <button onClick={() => getRandomQuestion(shuffledQuestions)}>Get a random question</button> */}
+			<h2 className='font-serif text-6xl font-bold text-yellow-50'>
 				{filmFull.questions[0]?.question}
-			</p>
-			<div>
+			</h2>
+			<div className='grid grid-cols-2 gap-y-14 gap-x-20'>
 				{filmFull.questions[0]?.answers.map((answer) => (
-					<button onClick={() => {
+					<button className='rounded-lg bg-yellow-50 p-16 py-8 text-darker font-sans font-bold text-xl' onClick={() => {
 						handleAnswerClick(answer, dispatch);
 						getRandomQuestion(shuffledQuestions);
 					}} key={answer}>{answer}</button>

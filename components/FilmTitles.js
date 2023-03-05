@@ -7,10 +7,7 @@ const FilmTitles = () => {
 	
 	return (
        
-		<div className='bg-emerald-700'>
-			<h1 className='text-3xl font-bold'>Some Film Titles</h1>
-			<p className='text-xl text-yellow-50'>{data[0].title}</p>
-
+		<div className='h-full bg-yellow-50 text-darker'>
 			<SampleQuestions data={data} />
 		</div>
         
