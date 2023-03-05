@@ -7,7 +7,7 @@ const Header = () => {
 				initial={{ y: -10 }}
 				animate={{ y: 0 }}
 				transition={{ duration: 1, delay: 2 }}
-				className="title relative ml-6 h-52 font-sans text-8xl font-bold text-orange-600">
+				className="title relative ml-6 h-52 font-sans text-8xl font-bold text-orange-600 2xl:text-9xl">
 				<motion.h1 	initial={{ z: 4, rotateZ: 4, y: 10, x: 6 }}
 					animate={{ x: 0, y: 0, z: 0, rotateZ: 0 }}
 					transition={{ duration: 2 }} className="title title-shadow-first absolute left-[10vw]">On mate quoi ce soir ?</motion.h1>

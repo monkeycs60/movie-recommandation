@@ -9,7 +9,6 @@ body {
   font-family: "Lora", serif;
 }
 
-
 .title {
   background-image: url("/400w.webp");
   background-size: fill;
@@ -20,10 +19,46 @@ body {
   padding: 20px;
 }
 
-
 .image-cover {
   background-image: url("/canape-movie.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.engrenage1 {
+  animation: rotate 2s linear infinite;
+}
+
+.engrenage2 {
+  animation: rotate 4s linear infinite reverse;
+}
+
+.engrenage3 {
+  animation: rotate 6s linear infinite;
+}
+
+ .animate-pulse {
+    animation: pulse 2s infinite;
+  }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+ @keyframes pulse {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

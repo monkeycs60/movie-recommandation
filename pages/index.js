@@ -45,25 +45,25 @@ export default function Home(dehydratedState) {
 			</Head>
 			<div className="min-h-[100vh] w-full bg-yellow-50">
 				<Header />
-				<main className='relative my-16 mx-auto flex w-4/5 flex-row-reverse items-end justify-between gap-6'>
+				<main className='relative my-16 mx-auto flex w-4/5 flex-row-reverse items-end justify-between gap-6 2xl:my-[14vh]'>
 					<div
 					 className="it grid grid-cols-5 gap-2">
-				  		<button onClick={() => {router.push('/questions');}} className="col-span-3 col-start-2 row-start-3 m-auto h-full w-full bg-black font-sans text-3xl text-white hover:bg-white hover:text-black">
+				  		<button onClick={() => {router.push('/questions');}} className="button-flux col-span-3 col-start-2 row-start-3 m-auto h-full w-full bg-black font-sans text-3xl text-white hover:bg-white hover:text-black">
 				  On tente ?
 				 <span className='block text-xs'> (clique ici)</span>
 				  		</button>
 						{posterArray.map((poster, index) => (
-							<div key={index} className={'h-32 w-32 bg-metalgrey opacity-60'}>
+							<div key={index} className={'h-32 w-32 bg-metalgrey opacity-60 2xl:h-40 2xl:w-40'}>
 								<img src={baseUrlForPoster + poster} alt="" className='h-full object-cover' />
 							</div>
 						))}
 					</div>
 					<div className='flex w-1/3 flex-col flex-wrap gap-12  break-words rounded-xl font-serif'>
-						<div className='flex flex-col gap-4 rounded-xl bg-white p-4'>
-							<h2 className='font-sans text-3xl font-bold'>En panne d'inspiration ? Vous êtes au bon endroit !</h2>
+						<div className='flex flex-col gap-4 rounded-xl bg-white p-4 2xl:p-8'>
+							<h2 className='font-sans text-3xl font-bold 2xl:text-4xl'>En panne d'inspiration ? Vous êtes au bon endroit !</h2>
 							<h3 className='text-xl'>Notre artisan développeur vous a concocté un petit algorithme pour dénicher votre prochain film préféré</h3>
 						</div>
-						<div className='flex flex-col gap-2 rounded-xl bg-white p-4'>
+						<div className='flex flex-col gap-2 rounded-xl bg-white p-4 2xl:p-8 2xl:text-lg'>
 							<div className='flex gap-4'>
 								<GiGreatWarTank size={24} />
 								<motion.p>100% opérationnel <span className='line-through decoration-2'> (on croise les doigts) </span></motion.p>
