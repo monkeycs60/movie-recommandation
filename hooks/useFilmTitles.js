@@ -29,7 +29,7 @@ const useFilmTitles = () => {
 				overview: item.overview,
 				poster_path: item.poster_path,
 				genres: item.genre_ids.map((genreId) => movieGenres.genres.find((genre) => genre.id === genreId).name),
-				original_language: movieCountryByISO[item.original_language],
+				original_language: item.original_language,
 				vote_average: item.vote_average,
 			}));
 			dispatch(addFilms(films));

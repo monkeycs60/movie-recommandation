@@ -3,11 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { addQuestion, removeOneQuestion } from '@/store/filmSlice';
 import { sortByGenre,
+	sortByGenreSome,
+	sortByGenreOne,
+	sortByGenreThree,
+	sortByExcludingGenre,
 	sortByPopularity,
 	sortByYear,
+	sortByExcludingYear,
 	sortByDecade,
 	sortByRate,
-	sortByLanguage,
+	sortByCountry,
+	sortByExcludingCountry,
+	sortByExcludingResumeWords,
 } from '@/store/filmSlice';
 
 const SampleQuestions = (data) => {
@@ -123,7 +130,204 @@ const SampleQuestions = (data) => {
 
 	const handleMood1 = () => {
 		console.log('handleMood1 : au fond du trou');
-		dispatch(sortByGenre('Drama'));
+		dispatch(sortByGenreThree(
+			['Romance',
+				'Family',
+				'Comedy']
+		));
+	};
+ 
+	const handleMood2 = () => {
+		console.log('handleMood2 : besoin d\'action');
+		dispatch(sortByGenreSome(
+			['Action',
+				'Adventure',
+				'Horror',
+				'War']
+		));
+	};
+
+	const handleMood3 = () => {
+		console.log('handleMood3 : envie de rire');
+		dispatch(sortByGenreSome(
+			['Comedy',
+				'Family',
+				'Animation']
+		));
+	};
+
+	const handleMood4 = () => {
+		console.log('handleMood4 : soif d\'inconnu');
+		dispatch(sortByGenreSome(
+			['Mystery',
+				'Fantasy',
+				'History',
+				'Science Fiction']
+		));
+	};
+
+	const handleHate1 = () => {
+		console.log('handleHate1 : l\'année 1996');
+		dispatch(sortByExcludingYear(1996));
+	};
+
+	const handleHate2 = () => {
+		console.log('handleHate2 : les films romantiques');
+		dispatch(sortByExcludingGenre('Romance'));
+	};
+
+	const handleHate3 = () => {
+		console.log('handleHate3 : ta belle-mère');
+		dispatch(sortByExcludingResumeWords([
+			'belle famille',
+			'belle-famille',
+			'belle mère',
+			'belle-mère',
+			'angoisse',
+			'angoissant',
+			'conflit',
+			'tension',
+			'autoritaire',
+			'critique',
+			'intrusive',
+			'malaise',
+			'famille',
+			'évitement'
+		]));
+	};
+
+	const handleHate4 = () => {
+		console.log('handleHate4 : le cinéma français');
+		dispatch(sortByExcludingCountry('French'));
+	};
+
+	const handleExcitement1 = () => {
+		console.log('handleExcitement1 : le cinéma américain');
+		dispatch(sortByCountry('en'));
+	};
+
+	const handleExcitement2 = () => {
+		console.log('handleExcitement2 : les années 2000');
+		dispatch(sortByDecade(200));
+	};
+
+	const handleExcitement3 = () => {
+		console.log('handleExcitement3 : les comédies à l\'eau de rose');
+		dispatch(sortByGenreSome(
+			['Romance',
+				'Comedy']
+		));
+	};
+
+	const handleExcitement4 = () => {
+		console.log('handleExcitement4 : les valeurs sûres');
+		dispatch(sortByPopularity(200));
+	};
+
+	const handleEra1 = () => {
+		console.log('handleEra1 : années 1980');
+		dispatch(sortByDecade(198));
+	};
+
+	const handleEra2 = () => {
+		console.log('handleEra2 : années 2010');
+		dispatch(sortByDecade(201));
+	};
+
+	const handleEra3 = () => {
+		console.log('handleEra3 : années 1990');
+		dispatch(sortByDecade(199));
+	};
+
+	const handleEra4 = () => {
+		console.log('handleEra4 : cinéma très récent');
+		dispatch(sortByYear(202));
+	};
+
+	const handleSearch1 = () => {
+		console.log('handleSearch1 : la crème de la crème');
+		dispatch(sortByRate(200));
+	};
+
+	const handleSearch2 = () => {
+		console.log('handleSearch2 : le dépaysement');
+		dispatch(sortByGenreThree(
+			['Fantasy',
+				'History',
+				'Science Fiction']
+		));
+	};
+
+	const handleSearch3 = () => {
+		console.log('handleSearch3 : un documentaire');
+		dispatch(sortByGenreOne('Documentary'));
+	};
+
+	const handleSearch4 = () => {
+		console.log('handleSearch4 : la nostalgie');
+		dispatch(sortByGenreThree(
+			['Romance',
+				'History',
+				'Drama']
+		));
+	};
+
+	const handleAvoid1 = () => {
+		console.log('handleAvoid1 : avoir peur');
+		dispatch(sortByExcludingGenre
+		(['Horror',
+			'Thriller',
+			'War',
+			'Mystery',
+			'Crime',
+		]));
+	};
+
+	const handleAvoid2 = () => {
+		console.log('handleAvoid2 : te cultiver');
+		dispatch(sortByExcludingResumeWords([
+			'art',
+			'artiste',
+			'peintre',
+			'intelligence',
+			'intellectuel',
+			'intellectuelle',
+			'culture',
+			'culturel',
+			'culturelle',
+			'réflexion',
+			'réfléchir',
+			'complexe',
+			'complexité'
+		]));
+		dispatch(sortByExcludingGenre
+		(['Documentary',
+			'History',
+		]));
+	};
+
+	const handleAvoid3 = () => {
+		console.log('handleAvoid3 : De regarder le même film que ton petit cousin');
+		dispatch(sortByExcludingResumeWords([
+			'famille',
+			'familial',
+			'jeunesse',
+			'adolescent',
+			'petit',
+			'petit',
+			'enfant',
+			'ado',
+			'émerveillement',
+			'naïf'
+		]));
+		dispatch(sortByExcludingGenre
+		(['Family',
+			'Animation',
+		]));
+	};
+
+	const handleAvoid4 = () => {
+		console.log('handleAvoid4 : De répondre à cette question');
 	};
 
 	return (
