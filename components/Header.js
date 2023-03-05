@@ -8,9 +8,9 @@ const Header = () => {
 				animate={{ y: 0 }}
 				transition={{ duration: 1, delay: 2 }}
 				className="title relative ml-6 h-52 font-sans text-8xl font-bold text-orange-600">
-				<motion.h1 	initial={{ z: 15, rotateZ: 15 }}
-					animate={{ y: 0, z: 0, rotateZ: 0 }}
-					transition={{ duration: 1 }} className="title title-shadow-first absolute left-[10vw]">On mate quoi ce soir ?</motion.h1>
+				<motion.h1 	initial={{ z: 15, rotateZ: 15, y: 400, x: 250 }}
+					animate={{ x: 0, y: 0, z: 0, rotateZ: 0 }}
+					transition={{ duration: 3 }} className="title title-shadow-first absolute left-[10vw]">On mate quoi ce soir ?</motion.h1>
 				<motion.h1
 					initial={{ z: -12, rotateZ:20 }}
 					animate={{ y: 0, z: 0, rotateZ: 0 }}
