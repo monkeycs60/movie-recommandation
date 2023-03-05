@@ -22,7 +22,7 @@ export const handleSearch2 = (dispatch) => {
 	console.log('handleSearch2 : le dépaysement');
 	dispatch(sortByGenreThree(
 		['Fantasy',
-			'History',
+			'Action',
 			'Science Fiction']
 	));
 };

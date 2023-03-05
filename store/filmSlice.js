@@ -9,6 +9,10 @@ export const filmSlice = createSlice({
 		questions: [],
 		totalQuestions: 0,
 		showQuestions: false,
+		questionOneSelection: [],
+		questionTwoSelection: [],
+		questionThreeSelection: [],
+		questionFourSelection: [],
 	},
 	reducers: {
 		addFilms: (state, action) => {
@@ -80,6 +84,14 @@ export const filmSlice = createSlice({
 		//exclude one genre
 		sortByExcludingGenre: (state, action) => {
 			const filteredList = state.filmsList.filter((movie) => !movie.genres.includes(action.payload));
+			if(filteredList.length > 0) {
+				state.filmsList = filteredList;
+				state.totalFilms = state.filmsList.length;
+			}
+		},
+		//sort by excluding multiple genres
+		sortByExcludingGenreSome: (state, action) => {
+			const filteredList = state.filmsList.filter((movie) => !action.payload.some((genre) => movie.genres.includes(genre)));
 			if(filteredList.length > 0) {
 				state.filmsList = filteredList;
 				state.totalFilms = state.filmsList.length;
@@ -157,6 +169,10 @@ export const filmSlice = createSlice({
 				state.totalFilms = state.filmsList.length;
 			}
 		},
+		//push the filmlist in the questionOneSelection
+		questionOneResult: (state) => {
+			state.questionOneSelection = state.filmsList;
+		}
 	},
 	extraReducers: (builder) => {
 		builder.addCase(HYDRATE, (state, action) => {
@@ -175,6 +191,7 @@ export const {
 	sortByGenreOne,
 	sortByGenreThree,
 	sortByExcludingGenre,
+	sortByExcludingGenreSome,
 	sortByRate,
 	sortByYear,
 	sortByExcludingYear,
@@ -183,6 +200,7 @@ export const {
 	sortByCountry,
 	sortByExcludingCountry,
 	sortByExcludingResumeWords,
+	questionOneResult
 } = filmSlice.actions;
 
 export default filmSlice.reducer;

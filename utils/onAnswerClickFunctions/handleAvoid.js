@@ -3,6 +3,7 @@ import { sortByGenre,
 	sortByGenreOne,
 	sortByGenreThree,
 	sortByExcludingGenre,
+	sortByExcludingGenreSome,
 	sortByPopularity,
 	sortByYear,
 	sortByExcludingYear,
@@ -15,7 +16,7 @@ import { sortByGenre,
 
 export const handleAvoid1 = (dispatch) => {
 	console.log('handleAvoid1 : avoir peur');
-	dispatch(sortByExcludingGenre
+	dispatch(sortByExcludingGenreSome
 	(['Horror',
 		'Thriller',
 		'War',

@@ -1,7 +1,7 @@
 import questions from '@/lib/questionsList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { addQuestion, removeOneQuestion } from '@/store/filmSlice';
+import { addQuestion, removeOneQuestion, questionOneResult } from '@/store/filmSlice';
 import handleAnswerClick from '@/utils/handleAnswerClick';
 
 const SampleQuestions = (data) => {
@@ -10,6 +10,7 @@ const SampleQuestions = (data) => {
 	const dispatch = useDispatch();
 	const filmFull = useSelector((state) => state.film);
 	console.warn(filmFull);
+
 	// fonction pour mélanger les questions de manière aléatoire
 	const shuffleQuestions = (questions) => {
 		const shuffled = questions.sort(() => Math.random() - 0.5);
@@ -30,7 +31,11 @@ const SampleQuestions = (data) => {
 		if (shuffledQuestions.length <= 2) return null;
 		const randomQuestion = questionsTotalRedux[Math.floor(Math.random() * questions.length)];
 		dispatch(removeOneQuestion());
+		// push the filmlist in the state "questiontwo" and then use it in the component
+		console.log('film', filmFull.questionOneSelection);
 		setCurrentQuestion(randomQuestion);
+		//on push les résultats dans un state unique pour chaque question
+		dispatch(questionOneResult());
 		return randomQuestion;
 	};
 
