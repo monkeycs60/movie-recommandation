@@ -30,6 +30,8 @@ export default function Home(dehydratedState) {
 	const router = useRouter();
 	console.log(dehydratedState);
 	const posterArray = dehydratedState.dehydratedState.queries[0].state.data;
+	posterArray.sort(() => Math.random() - 0.5);
+	posterArray.length = 17;
 	console.log(posterArray);
 	const baseUrlForPoster = 'https://image.tmdb.org/t/p/w300';
 	return (
@@ -40,21 +42,40 @@ export default function Home(dehydratedState) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.png" />
 			</Head>
-			<main className='flex h-[100vh] flex-col items-center justify-start bg-yellow-50'>
+			<div className="min-h-[100vh] w-full bg-yellow-50">
 				<Header />
-				<div className="grid grid-cols-5 grid-rows-4 gap-2">
-  {posterArray.map((poster, index) => (
-    <div key={index} className={`h-32 w-32 bg-metalgrey col-start-${(index % 5) + 1} row-start-${Math.floor(index / 5) + 1}`}>
-      <img src={baseUrlForPoster + poster} alt=""  />
-    </div>
-  ))}
-</div>
-				  <button onClick={() => {router.push('/questions');}} className="m-12 bg-metalgrey py-12 px-56 text-white">
-				  Show Film Titles
-				  </button>
+				<main className='my-12 mx-auto flex w-4/5 flex-row-reverse items-end justify-start gap-6'>
+					<div className="it grid grid-cols-5 gap-2">
+				  		<button onClick={() => {router.push('/questions');}} className="col-span-3 col-start-2 row-start-3 m-auto h-full w-full bg-black font-sans text-3xl text-white hover:bg-white hover:text-black">
+				  On tente ?
+				  		</button>
+						{posterArray.map((poster, index) => (
+							<div key={index} className={'h-32 w-32 bg-metalgrey opacity-60'}>
+								<img src={baseUrlForPoster + poster} alt="" className='h-full object-cover' />
+							</div>
+						))}
+					</div>
+					<div className='flex flex-1 flex-col gap-12 bg-white rounded-xl p-6'>
+						<div className='flex flex-col gap-4'>
+							<h2 className='text-2xl'>En panne d'inspiration ? Vous êtes au bon endroit !</h2>
+							<h3>Notre artisan développeur vous a concocté un petit algorithme afin de dénicher votre prochain film préféré</h3>
+						</div>
+						<div>
+							<div>
+								<p>100% opérationnel <span> (on croise les doigts) </span></p>
+							</div>
+							<div>
+								<p>Ultra rapide <span> (dans les faits... pas vraiment) </span></p>
+							</div>
+							<div>
+								<p>2000 films référencés <span>(la flemme rajouter d'autres)</span></p>
+							</div>
+						</div>
+					</div>
 
+				</main>
 				<Footer />
-			</main>
+			</div>
 		</>
 	);
 }
