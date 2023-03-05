@@ -1,4 +1,4 @@
-import { getCatFact } from '@/pages/api/catCall';
+import { getCatFact } from '@/pages/api/TMDBMoviesCall';
 import { useQuery } from '@tanstack/react-query';;
 import { useEffect } from 'react';
 import movieGenres from '@/lib/movieGenres';

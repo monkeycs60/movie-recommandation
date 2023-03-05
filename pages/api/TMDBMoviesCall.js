@@ -32,3 +32,12 @@ export async function getCatFact() {
 	const moviesOfTheYearFlatRandom = moviesOfTheYearFlat.sort(() => Math.random() - 0.5).slice(0, 1000);
 	return moviesOfTheYearFlatRandom;
 }
+
+export async function getMoviePosters() {
+	const res = await movieApi.get('/discover/movie?&page=1');
+
+	const movies = res.data.results;
+	const movieCover = movies.map((movie) => movie.backdrop_path);
+	// const moviesFlat = movies.flat();
+	return movieCover;
+}

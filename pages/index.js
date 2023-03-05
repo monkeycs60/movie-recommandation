@@ -1,14 +1,37 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import {  QueryClient, useQuery } from '@tanstack/react-query';
-import { getCatFact } from './api/catCall';
+import {  QueryClient, useQuery, dehydrate } from '@tanstack/react-query';
+import { getCatFact, getMoviePosters } from './api/TMDBMoviesCall';
 import { Suspense, lazy, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
-// import FilmTitles from '@/components/FilmTitles';
+import { useRouter } from 'next/router';
 
-export default function Home() {
+export async function getServerSideProps() {
+	try {
+		const queryClient = new QueryClient();
+		await queryClient.prefetchQuery(['moviePosters'], getMoviePosters);
+		console.log('hello');
+		return {
+			props: {
+				dehydratedState: dehydrate(queryClient),
+			},
+		};
+	} catch (error) {
+		return {
+			props: {
+				error: true,
+			},
+		};
+	}
+}
+
+export default function Home(dehydratedState) {
+	const router = useRouter();
+	console.log(dehydratedState);
+	const posterArray = dehydratedState.dehydratedState.queries[0].state.data;
+	console.log(posterArray);
+	const baseUrlForPoster = 'https://image.tmdb.org/t/p/w300';
 	return (
 		<>
 			<Head>
@@ -19,20 +42,17 @@ export default function Home() {
 			</Head>
 			<main className='flex h-[100vh] flex-col items-center justify-start bg-yellow-50'>
 				<Header />
-				<div className='image-cover flex w-[70vw] flex-1 flex-col items-center justify-center bg-red-500'>
-					<Link href="/questions">
-        
-				  <button onClick={() => {
-							console.log('click');
-						}
+				<div className="grid grid-cols-5 grid-rows-4 gap-2">
+  {posterArray.map((poster, index) => (
+    <div key={index} className={`h-32 w-32 bg-metalgrey col-start-${(index % 5) + 1} row-start-${Math.floor(index / 5) + 1}`}>
+      <img src={baseUrlForPoster + poster} alt=""  />
+    </div>
+  ))}
+</div>
+				  <button onClick={() => {router.push('/questions');}} className="m-12 bg-metalgrey py-12 px-56 text-white">
+				  Show Film Titles
+				  </button>
 
-						} className="m-12 bg-metalgrey py-12 px-56 text-white">Show Film Titles</button>
-
-						{/* <div className='my-12 flex items-center justify-center'>
-					<Image src="/canape-movie.png" alt="" width={1100} height={1200} />
-				</div> */}
-					</Link>
-				</div>
 				<Footer />
 			</main>
 		</>
