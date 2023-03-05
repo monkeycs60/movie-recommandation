@@ -42,7 +42,7 @@ const SampleQuestions = (data) => {
 			console.log('resultList', resultList);
 			//tri cette liste au hasard et ne récupère que 10 résultats max
 			const shuffledResultList = resultList.sort(() => Math.random() - 0.5);
-			const finalResultList = shuffledResultList.slice(0, 10);
+			const finalResultList = shuffledResultList.slice(0, 6);
 			setFinalResultList(finalResultList);
 			console.log('finalResultList', finalResultList);
 
@@ -58,43 +58,49 @@ const SampleQuestions = (data) => {
 		return randomQuestion;
 	};
 
+	  const [current, setCurrent] = useState(0);
+
+	const goToPrevious = () => {
+		setCurrent(current === 0 ? results.length - 1 : current - 1);
+	};
+
+	const goToNext = () => {
+		setCurrent(current === results.length - 1 ? 0 : current + 1);
+	};
+
 	 return (
 		<div className='relative flex h-full flex-col items-center justify-center gap-[10vh] bg-darker'>
 
 			{displayResult ? (
-				<div className='text-white'>
-					<h1>Result</h1>
+				<div className='flex flex-col gap-8 text-white'>
+					<h1 className='flex items-center justify-center text-4xl'>Result</h1>
 					<div className='flex flex-row items-center justify-center'>
-						{finalResultList.map((film, index) => (
-							<div
-								key={film.title}
-								className={`relative mx-4 transition-opacity duration-300 
-          ${index === 0 ? 'opacity-100' : 'opacity-50 hover:opacity-100'}
-          ${index === 1 || index === finalResultList.length - 1 ? 'opacity-25 hover:opacity-50' : ''}
-        `}
-							>
-								<div className='absolute top-0 flex h-full w-full items-center justify-center'>
-									<div className='bg-black bg-opacity-60 p-4'>
-										<h2>{film.title}</h2>
-										<img src={`https://image.tmdb.org/t/p/w400${film.poster_path}`} alt={film.title} />
-										<p>{film.overview}</p>
-										<p>{film.release_date.slice(0, 4)}</p>
-									</div>
+						{finalResultList.map((film) => (
+							
+							<div key={film.title} className=' top-0 flex h-full w-full items-center justify-center'>
+								<div className='bg-black bg-opacity-60 p-6'>
+									<h2>{film.title}</h2>
+									<img src={`https://image.tmdb.org/t/p/w400${film.poster_path}`} alt={film.title} className="w-96 object-cover" />
+									<p>{film.overview}</p>
+									<p>{film.release_date.slice(0, 4)}</p>
 								</div>
-								<img src={`https://image.tmdb.org/t/p/w400${film.poster_path}`} alt={film.title} />
 							</div>
+							
 						))}
 					</div>
-					<button
-						onClick={() => {
-							router.reload();
-						}}
-					>Retenter ma chance ?</button>
-					<button
-						onClick={() => {
-							router.push('/');
-						}}
-					>Retour à la case départ !</button>
+					<div className='flex justify-center gap-16'>
+						<button  className='w-[20vw] rounded-lg bg-yellow-50 p-4 font-sans text-xl font-bold text-darker hover:border-2 hover:bg-yellow-600  hover:text-white'
+							onClick={() => {
+								router.reload();
+							}}
+						>Retenter ma chance ?</button>
+						<button
+							className='w-[20vw] rounded-lg bg-yellow-50 p-4 font-sans text-xl font-bold  text-darker hover:border-2 hover:bg-yellow-600  hover:text-white'
+							onClick={() => {
+								router.push('/');
+							}}
+						>Retour à la case départ !</button>
+					</div>
 				</div>
 			) : (
 				<>
@@ -104,7 +110,7 @@ const SampleQuestions = (data) => {
 					</h2>
 					<div className='grid grid-cols-2 gap-y-14 gap-x-20'>
 						{filmFull.questions[0]?.answers.map((answer) => (
-							<button className='rounded-lg bg-yellow-50 p-16 py-8 font-sans text-xl font-bold text-darker border-2 hover:text-white hover:scale-110 hover:border-2  hover:bg-yellow-600 ' onClick={() => {
+							<button className='rounded-lg border-2 bg-yellow-50 p-16 py-8 font-sans text-xl font-bold text-darker hover:scale-110 hover:border-2 hover:bg-yellow-600  hover:text-white ' onClick={() => {
 								handleAnswerClick(answer, dispatch);
 								getRandomQuestion(shuffledQuestions);
 							}} key={answer}>{answer}</button>
