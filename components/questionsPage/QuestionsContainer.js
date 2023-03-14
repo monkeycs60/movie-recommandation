@@ -1,17 +1,17 @@
 
 import useFilmTitles from '@/hooks/useFilmTitles';
-import SampleQuestions from './SampleQuestions';
+import QuestionsAndResults from './body/QuestionsAndResults';
 
-const FilmTitles = () => {
+const QuestionsContainer = () => {
 	const { data, isLoading, isError} = useFilmTitles();
 	
 	return (
        
 		<div className='h-full bg-yellow-50 text-darker'>
-			<SampleQuestions data={data} />
+			<QuestionsAndResults data={data} />
 		</div>
         
 	);
 };
 
-export default FilmTitles;
+export default QuestionsContainer;

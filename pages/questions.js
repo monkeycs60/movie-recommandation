@@ -1,12 +1,12 @@
-import FilmTitles from '@/components/FilmTitles';
-import LoadingFetch from '@/components/LoadingFetch';
+import QuestionsContainer from '@/components/questionsPage/questionsContainer';
+import LoadingFetch from '@/components/loading/LoadingFetch';
 import { Suspense } from 'react';
 
 const Questions = () => {
 	return (
 		<div className='relative h-[100vh] bg-darker'>
 			<Suspense fallback={<LoadingFetch />}>
-				<FilmTitles />
+				<QuestionsContainer />
 			</Suspense>
 		</div>
 	);

@@ -7,16 +7,7 @@
 body {
   background-color: #1b1b1a;
   font-family: "Lora", serif;
-}
-
-.title {
-  background-image: url("/400w.webp");
-  background-size: fill;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  padding: 20px;
+  font-size: 16px;
 }
 
 .image-cover {
@@ -24,6 +15,46 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.souligne {
+  background-image: linear-gradient(to right, #f7f6f6, #000);
+  background-position: bottom left 20px;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  padding-bottom: 5px;
+}
+
+div.box-shadow {
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2),
+    inset 0 0 0.5rem rgba(255, 255, 255, 0.5);
+}
+
+div.box-shadow:before {
+  content: "";
+  position: absolute;
+  top: -0.3rem;
+  left: -0.3rem;
+  right: -0.3rem;
+  bottom: -0.3rem;
+  border: 2px solid #7a7979;
+  border-radius: 1rem;
+}
+
+div.other-box-shadow {
+  box-shadow: 0 0 0.5rem rgba(239, 236, 236, 0.926),
+    inset 0 0 0.5rem rgba(192, 192, 192, 0.882);
+}
+
+div.other-box-shadow:before {
+  content: "";
+  position: absolute;
+  top: -0.3rem;
+  left: -0.3rem;
+  right: -0.3rem;
+  bottom: -0.3rem;
+  border: 2px solid #d9d9d9;
+  border-radius: 1rem;
 }
 
 .engrenage1 {
@@ -38,9 +69,56 @@ body {
   animation: rotate 6s linear infinite;
 }
 
- .animate-pulse {
-    animation: pulse 2s infinite;
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.text-animate {
+  animation: descend 3s ease-in-out 3 1s;
+}
+
+.loading-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(117, 116, 116, 0.8) 50%,
+    rgba(58, 58, 58, 0.5) 100%
+  );
+  animation: loading 2s ease-in-out infinite;
+}
+
+footer ul li img:hover,
+footer ul li svg:hover {
+  filter: brightness(1.5);
+  fill: #ca8a04;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
   }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes descend {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(30px);
+    color: #fefce8;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 
 @keyframes rotate {
   0% {
@@ -51,14 +129,163 @@ body {
   }
 }
 
- @keyframes pulse {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
+@keyframes pulse {
+  0% {
+    opacity: 0;
   }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.title {
+  background-image: url("/400w.webp");
+  background-size: fill;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  padding: 20px;
+  /* font-size: 12vh; */
+}
+
+.glitch2 {
+  animation: glitchAnim2 3s 3 ease-in-out;
+}
+
+.glitch3 {
+  animation: glitchAnim1 3s 3 ease-in-out;
+}
+
+@keyframes glitchAnim1 {
+  7% {
+    transform: none;
+  }
+  10% {
+    transform: translate(6px, -2px);
+  }
+  13% {
+    transform: none;
+  }
+  20% {
+    transform: none;
+  }
+  23% {
+    transform: translate(-12px, -7px);
+  }
+  26% {
+    transform: none;
+  }
+  40% {
+    transform: none;
+  }
+  43% {
+    transform: translate(10px, -9px);
+  }
+  46% {
+    transform: none;
+  }
+  65% {
+    transform: none;
+  }
+  68% {
+    transform: translate(7px, 5px);
+  }
+  71% {
+    transform: none;
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes glitchAnim2 {
+  7% {
+    transform: none;
+  }
+  10% {
+    transform: translate(-6px, 2px);
+  }
+  13% {
+    transform: none;
+  }
+  20% {
+    transform: none;
+  }
+  23% {
+    transform: translate(12px, 7px);
+  }
+  26% {
+    transform: none;
+  }
+  40% {
+    transform: none;
+  }
+  43% {
+    transform: translate(-10px, 9px);
+  }
+  46% {
+    transform: none;
+  }
+  65% {
+    transform: none;
+  }
+  68% {
+    transform: translate(-7px, 5px);
+  }
+  71% {
+    transform: none;
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes skewAnim {
+  20% {
+    transform: none;
+  }
+  23% {
+    transform: skew(5deg, -5deg) translate(3px, 5px);
+  }
+  26% {
+    transform: none;
+  }
+  40% {
+    transform: none;
+  }
+  43% {
+    transform: skew(5deg, -3deg) translate(-5px, 2px);
+  }
+  46% {
+    transform: none;
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.degrade {
+  background: linear-gradient(to bottom left, #444444 0%, #1b1b1a 60%);
+}
+
+.homeHover {
+  transition: all 0.5s ease;
+  background: #fefce8;
+}
+.homeHover h1 {
+  background: #eab308;
+  transition: all 0.5s ease;
+}
+
+.homeHover:hover {
+  background: #eab308;
+}
+
+.homeHover:hover h1 {
+  background: #fefce8;
+  transition: all 0.5s ease;
+}

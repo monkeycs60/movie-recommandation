@@ -1,16 +1,6 @@
-import { sortByGenre,
-	sortByGenreSome,
-	sortByGenreOne,
-	sortByGenreThree,
-	sortByExcludingGenre,
-	sortByPopularity,
+import {
 	sortByYear,
-	sortByExcludingYear,
 	sortByDecade,
-	sortByRate,
-	sortByCountry,
-	sortByExcludingCountry,
-	sortByExcludingResumeWords,
 } from '@/store/filmSlice';
 	
 export const handleEra1 = (dispatch) => {

@@ -165,10 +165,6 @@ export const filmSlice = createSlice({
 				state.totalFilms = state.filmsList.length;
 			}
 		},
-		//push the filmlist in the questionOneSelection
-		questionOneResult: (state) => {
-			state.questionOneSelection = state.filmsList;
-		}
 	},
 	extraReducers: (builder) => {
 		builder.addCase(HYDRATE, (state, action) => {
@@ -196,7 +192,6 @@ export const {
 	sortByCountry,
 	sortByExcludingCountry,
 	sortByExcludingResumeWords,
-	questionOneResult
 } = filmSlice.actions;
 
 export default filmSlice.reducer;

@@ -1,15 +1,7 @@
 
-import { sortByGenre,
-	sortByGenreSome,
-	sortByGenreOne,
-	sortByGenreThree,
+import {
 	sortByExcludingGenre,
-	sortByPopularity,
-	sortByYear,
 	sortByExcludingYear,
-	sortByDecade,
-	sortByRate,
-	sortByCountry,
 	sortByExcludingCountry,
 	sortByExcludingResumeWords,
 } from '@/store/filmSlice';

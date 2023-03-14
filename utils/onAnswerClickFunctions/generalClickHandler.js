@@ -2,32 +2,32 @@ import { handleMood1,
 	handleMood2,
 	handleMood3,
 	handleMood4,
-} from './onAnswerClickFunctions/handleMood';
+} from './handleMood';
 import { handleHate1,
 	handleHate2,
 	handleHate3,
 	handleHate4,
-} from './onAnswerClickFunctions/handleHate';
+} from './handleHate';
 import { handleExcitement1,
 	handleExcitement2,
 	handleExcitement3,
 	handleExcitement4,
-} from './onAnswerClickFunctions/handleExcitement';
+} from './handleExcitement';
 import { handleEra1,
 	handleEra2,
 	handleEra3,
 	handleEra4,
-} from './onAnswerClickFunctions/handleEra';
+} from './handleEra';
 import { handleSearch1,
 	handleSearch2,
 	handleSearch3,
 	handleSearch4,
-} from './onAnswerClickFunctions/handleSearch';
+} from './handleSearch';
 import { handleAvoid1,
 	handleAvoid2,
 	handleAvoid3,
 	handleAvoid4,
-} from './onAnswerClickFunctions/handleAvoid';
+} from './handleAvoid';
 
 const handleAnswerClick = (answer, dispatch) => {
 	// appel de la fonction appropriée en fonction de la réponse sélectionnée

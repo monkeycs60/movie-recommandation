@@ -14,11 +14,17 @@ module.exports = {
 				metalgrey: '#91898A',
 				darker: '#1b1b1a',
 			},
+			 lineClamp: {
+				7: '7',
+				8: '8',
+				9: '9',
+				10: '10',
+			},
 			fontFamily: {
 				'serif': ['Lora', 'Georgia', 'Cambria', 'Times New Roman', 'serif'],
 				'sans': ['Raleway', 'Helvetica Neue', 'Arial', 'sans-serif'],
 			},
 		},
 	},
-	plugins: [],
+	 plugins: [require('@tailwindcss/line-clamp')],
 };

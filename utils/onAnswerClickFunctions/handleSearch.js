@@ -1,16 +1,7 @@
-import { sortByGenre,
-	sortByGenreSome,
+import {
 	sortByGenreOne,
 	sortByGenreThree,
-	sortByExcludingGenre,
-	sortByPopularity,
-	sortByYear,
-	sortByExcludingYear,
-	sortByDecade,
 	sortByRate,
-	sortByCountry,
-	sortByExcludingCountry,
-	sortByExcludingResumeWords,
 } from '@/store/filmSlice';
 
 export const handleSearch1 = (dispatch) => {
