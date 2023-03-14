@@ -9,7 +9,7 @@ import shuffledQuestions from '@/utils/resultComponent/shuffleQuestions';
 import sortFinalResult from '@/utils/resultComponent/sortFinalResult';
 import handleWheelGalery from '@/utils/resultComponent/handleWheelGalery';
 import handleTouchEvents from '@/utils/resultComponent/handleTouchGalery';
-import ScrollWarningMessage from './bodyComponents/scrollWarningMessage';
+import ScrollWarningMessage from './bodyComponents/ScrollWarningMessage';
 import Results from './bodyComponents/Results';
 import Questions from './bodyComponents/Questions';
 

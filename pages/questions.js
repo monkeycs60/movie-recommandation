@@ -1,4 +1,4 @@
-import QuestionsContainer from '../components/questionsPage/QuestionsContainer';
+import QuestionsContainer from '@/components/questionsPage/QuestionsContainer';
 import LoadingFetch from '@/components/loading/LoadingFetch';
 import { Suspense } from 'react';
 
